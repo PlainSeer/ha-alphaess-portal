@@ -3,7 +3,7 @@ from homeassistant.components.number import NumberEntity, NumberMode
 from homeassistant.const import EntityCategory
 from .entity import PortalEntity
 
-SETTINGS = [('power_w', 'Discharge power', 100, 30000, 100, 'W', 'mdi:flash'), ('target_soc', 'Target state of charge', 5, 100, 1, '%', 'mdi:battery-low'), ('duration_minutes', 'Discharge duration', 1, 180, 1, 'min', 'mdi:timer-outline')]
+SETTINGS = [('power_w', 'Discharge power', 100, 30000, 100, 'W', 'mdi:flash'), ('target_soc', 'Target state of charge', 5, 100, 1, '%', 'mdi:battery-low'), ('duration_minutes', 'Discharge duration', 1, 180, 1, 'min', 'mdi:timer-outline'), ('charge_power_w', 'Test charge power', 100, 7000, 100, 'W', 'mdi:battery-arrow-up'), ('charge_target_soc', 'Test charge target SoC', 5, 100, 1, '%', 'mdi:battery-charging'), ('charge_duration_minutes', 'Test charge duration', 1, 180, 1, 'min', 'mdi:timer-outline')]
 
 async def async_setup_entry(hass, entry, async_add_entities):
     async_add_entities([DischargeSetting(entry.runtime_data, setting) for setting in SETTINGS])
