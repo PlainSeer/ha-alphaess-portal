@@ -9,7 +9,7 @@ from .client import PortalClient
 from .const import DOMAIN
 from .coordinator import PortalCoordinator
 
-PLATFORMS = [Platform.SWITCH, Platform.NUMBER]
+PLATFORMS = [Platform.SWITCH, Platform.NUMBER, Platform.BUTTON]
 CONFIG_SCHEMA = cv.empty_config_schema(DOMAIN)
 
 async def async_setup(hass, config):
