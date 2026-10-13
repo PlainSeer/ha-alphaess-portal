@@ -107,6 +107,12 @@ class PortalClient:
             await self.find_site()
         return await self.request('POST', f'/internal/v1/sites/{self.site_id}/charge-control', json={'strategy': 'Discharge', 'power': power, 'targetSoc': target_soc, 'duration': duration})
 
+    async def charge(self, power=2000, target_soc=100, duration=5):
+        # Experimental portal strategy; not yet confirmed by an AlphaESS charge test.
+        if self.site_id is None:
+            await self.find_site()
+        return await self.request('POST', f'/internal/v1/sites/{self.site_id}/charge-control', json={'strategy': 'Charge', 'power': power, 'targetSoc': target_soc, 'duration': duration})
+
     async def stop(self):
         if self.site_id is None:
             await self.find_site()
