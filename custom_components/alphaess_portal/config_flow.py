@@ -17,6 +17,9 @@ LOGIN_SCHEMA = vol.Schema({
 def options_schema(options):
     return vol.Schema({
         vol.Required('power_w', default=options.get('power_w', 5000)): vol.All(vol.Coerce(int), vol.Range(min=100, max=30000)),
+        vol.Required('charge_power_w', default=options.get('charge_power_w', 2000)): vol.All(vol.Coerce(int), vol.Range(min=100, max=7000)),
+        vol.Required('charge_target_soc', default=options.get('charge_target_soc', 100)): vol.All(vol.Coerce(int), vol.Range(min=5, max=100)),
+        vol.Required('charge_duration_minutes', default=options.get('charge_duration_minutes', 5)): vol.All(vol.Coerce(int), vol.Range(min=1, max=180)),
         vol.Required('target_soc', default=options.get('target_soc', 5)): vol.All(vol.Coerce(int), vol.Range(min=5, max=100)),
         vol.Required('active_poll_seconds', default=options.get('active_poll_seconds', DEFAULTS['active_poll_seconds'])): vol.All(vol.Coerce(int), vol.Range(min=15, max=300)),
         vol.Required('idle_poll_seconds', default=options.get('idle_poll_seconds', DEFAULTS['idle_poll_seconds'])): vol.All(vol.Coerce(int), vol.Range(min=60, max=3600)),
