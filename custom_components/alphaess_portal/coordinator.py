@@ -52,7 +52,7 @@ class PortalCoordinator(DataUpdateCoordinator):
         self.last_error = None
         self.last_checked = datetime.now(timezone.utc).isoformat()
         source = ((data.get('power') or {}).get('dispatch') or {}).get('source')
-        active = source == 'IMMEDIATE_DISCHARGE' or monotonic() < self._fast_until
+        active = source in ('IMMEDIATE_DISCHARGE', 'IMMEDIATE_CHARGE') or monotonic() < self._fast_until
         seconds = self.setting('active_poll_seconds' if active else 'idle_poll_seconds')
         self.update_interval = timedelta(seconds=seconds)
         return data
